@@ -33,5 +33,28 @@ object Algorithm {
         nums[j] = t
     }
 
+    /**
+     * 要求时间复杂度 O(M + N)，空间复杂度 O(1)。其中 M 为行数，N 为 列数。
+     *
+     * 该二维数组中的一个数，小于它的数一定在其左边，大于它的数一定在其下边。
+     * 因此，从右上角开始查找，就可以根据 target 和当前元素的大小关系来快速地缩小查找区间，
+     * 每次减少一行或者一列的元素。当前元素的查找区间为左下角的所有元素。
+     */
+    fun find(target: Int, matrix: Array<IntArray>): Boolean {
+        if (matrix.isEmpty() || matrix[0].isEmpty()) {
+            return false
+        }
+        val rows: Int = matrix.size
+        val cols: Int = matrix[0].size
+        var r = 0
+        var c = cols - 1 // 从右上角开始
+        while (r <= rows - 1 && c >= 0) {
+            if (target == matrix[r][c]) {
+                return true
+            }
+            if (target > matrix[r][c]) r++ else c--
+        }
+        return false
+    }
 }
 
