@@ -9,6 +9,23 @@ fun main() {
 object Algorithm {
 
     /**
+     * 给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。
+     * 回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。例如，121 是回文，而 123 不是。
+     */
+    fun isPalindrome(x: Int): Boolean {
+        if (x < 0) {
+            return false
+        }
+        var y = x
+        var result = 0
+        while (y != 0) {
+            result = result * 10 + y % 10
+            y /= 10
+        }
+        return result == x
+    }
+
+    /**
      * 给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，
      * 并返回它们的数组下标。
      */
