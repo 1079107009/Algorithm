@@ -9,6 +9,43 @@ fun main() {
 object Algorithm {
 
     /**
+     * 给定一个罗马数字，将其转换成整数。
+     */
+    fun romanToInt(s: String): Int {
+        val replace = s.replace("IV", "a")
+            .replace("IX", "b")
+            .replace("XL", "c")
+            .replace("XC", "d")
+            .replace("CD", "e")
+            .replace("CM", "f")
+
+        var result = 0
+        for (i in replace.indices) {
+            result += which(replace[i])
+        }
+        return result
+    }
+
+    private fun which(ch: Char): Int {
+        when (ch) {
+            'I' -> return 1
+            'V' -> return 5
+            'X' -> return 10
+            'L' -> return 50
+            'C' -> return 100
+            'D' -> return 500
+            'M' -> return 1000
+            'a' -> return 4
+            'b' -> return 9
+            'c' -> return 40
+            'd' -> return 90
+            'e' -> return 400
+            'f' -> return 900
+        }
+        return 0
+    }
+
+    /**
      * 给你一个整数 x ，如果 x 是一个回文整数，返回 true ；否则，返回 false 。
      * 回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。例如，121 是回文，而 123 不是。
      */
