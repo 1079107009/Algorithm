@@ -1,12 +1,37 @@
 package com.example.algorithm
 
 import com.example.algorithm.Algorithm.duplicate
+import kotlin.math.min
 
 fun main() {
     duplicate(intArrayOf(2, 3, 1, 0, 2, 5))
 }
 
 object Algorithm {
+
+    /**
+     * 编写一个函数来查找字符串数组中的最长公共前缀。
+     */
+    fun longestCommonPrefix(strs: Array<String>): String {
+        if (strs.isNullOrEmpty()) {
+            return ""
+        }
+        var prefix = strs[0]
+        val count = strs.size
+        for (i in 1 until count) {
+            val s = strs[i]
+            val length = Math.min(prefix.length, s.length)
+            var index = 0
+            while (index < length && prefix[index] == s[index]) {
+                index++
+            }
+            prefix = s.substring(0, index)
+            if (prefix.isEmpty()) {
+                return prefix
+            }
+        }
+        return prefix
+    }
 
     /**
      * 给定一个罗马数字，将其转换成整数。
