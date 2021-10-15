@@ -1,6 +1,8 @@
 package com.example.algorithm
 
 import com.example.algorithm.Algorithm.duplicate
+import java.util.*
+import kotlin.collections.HashMap
 import kotlin.math.min
 
 fun main() {
@@ -8,6 +10,37 @@ fun main() {
 }
 
 object Algorithm {
+
+    /**
+     * 给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效
+     * 有效字符串需满足：
+     * 左括号必须用相同类型的右括号闭合。
+     * 左括号必须以正确的顺序闭合。
+     */
+    fun isValid(s: String): Boolean {
+        val length = s.length
+        if (length % 2 != 0) {
+            return false
+        }
+        val map = HashMap<Char, Char>().apply {
+            put(')', '(')
+            put(']', '[')
+            put('}', '{')
+        }
+        val stack = LinkedList<Char>()
+        for (i in 0 until length) {
+            val c = s[i]
+            if (map.containsKey(c)) {
+                if (stack.isEmpty() || stack.peek() != map[c]) {
+                    return false
+                }
+                stack.pop()
+            } else {
+                stack.push(c)
+            }
+        }
+        return stack.isEmpty()
+    }
 
     /**
      * 编写一个函数来查找字符串数组中的最长公共前缀。
