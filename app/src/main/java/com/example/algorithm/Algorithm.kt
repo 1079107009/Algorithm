@@ -12,6 +12,25 @@ fun main() {
 object Algorithm {
 
     /**
+     * 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。
+     * 不要使用额外的数组空间，你必须仅使用 O(1) 额外空间并 原地 修改输入数组。
+     * 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+     */
+    fun removeElement(nums: IntArray, `val`: Int): Int {
+        var left = 0
+        var right = nums.size
+        while (left < right) {
+            if (nums[left] == `val`) {
+                nums[left] = nums[right - 1]
+                right--
+            } else {
+                left++
+            }
+        }
+        return left
+    }
+
+    /**
      * 将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
      */
     fun mergeTwoLists(l1: ListNode?, l2: ListNode?): ListNode? {
