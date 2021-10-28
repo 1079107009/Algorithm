@@ -11,6 +11,21 @@ fun main() {
 object Algorithm {
 
     /**
+     * 最大子序和
+     *
+     * 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+     */
+    fun maxSubArray(nums: IntArray): Int {
+        var pre = 0
+        var maxAns = nums[0]
+        nums.forEach {
+            pre = Math.max(pre + it, it)
+            maxAns = Math.max(maxAns, pre)
+        }
+        return maxAns
+    }
+
+    /**
      * 搜索插入位置
      *
      * 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。
