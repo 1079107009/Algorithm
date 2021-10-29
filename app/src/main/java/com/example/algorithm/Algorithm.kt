@@ -11,6 +11,24 @@ fun main() {
 object Algorithm {
 
     /**
+     * 最后一个单词的长度
+     *
+     * 给你一个字符串 s，由若干单词组成，单词前后用一些空格字符隔开。返回字符串中最后一个单词的长度。
+     */
+    fun lengthOfLastWord(s: String): Int {
+        var index = s.length - 1
+        while (s[index] == ' ') {
+            index--
+        }
+        var wordLength = 0
+        while (index >= 0 && s[index] != ' ') {
+            wordLength++
+            index--
+        }
+        return wordLength
+    }
+
+    /**
      * 最大子序和
      *
      * 给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
