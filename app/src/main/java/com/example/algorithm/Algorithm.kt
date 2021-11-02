@@ -11,6 +11,25 @@ fun main() {
 object Algorithm {
 
     /**
+     * 66. 加一
+     *
+     * 给定一个由 整数 组成的 非空 数组所表示的非负整数，在该数的基础上加一。
+     */
+    fun plusOne(digits: IntArray): IntArray {
+        val n = digits.size
+        for (i in n - 1 downTo 0) {
+            digits[i]++
+            digits[i] = digits[i] % 10
+            if (digits[i] != 0) {
+                return digits
+            }
+        }
+        val result = IntArray(n + 1)
+        result[0] = 1
+        return result
+    }
+
+    /**
      * 最后一个单词的长度
      *
      * 给你一个字符串 s，由若干单词组成，单词前后用一些空格字符隔开。返回字符串中最后一个单词的长度。
