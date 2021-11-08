@@ -11,6 +11,36 @@ fun main() {
 object Algorithm {
 
     /**
+     * 67. 二进制求和
+     *
+     * 给你两个二进制字符串，返回它们的和（用二进制表示）。
+     */
+    fun addBinary(a: String, b: String): String {
+        val ans = StringBuffer()
+        val n = Math.max(a.length, b.length)
+        var carry = 0
+        for (i in 0 until n) {
+            carry += if (i < a.length) {
+                a[a.length - 1 - i] - '0'
+            } else {
+                0
+            }
+            carry += if (i < b.length) {
+                b[b.length - 1 - i] - '0'
+            } else {
+                0
+            }
+            ans.append('0' + (carry % 2))
+            carry /= 2
+        }
+        if (carry > 0) {
+            ans.append('1')
+        }
+        ans.reverse()
+        return ans.toString()
+    }
+
+    /**
      * 66. 加一
      *
      * 给定一个由 整数 组成的 非空 数组所表示的非负整数，在该数的基础上加一。
